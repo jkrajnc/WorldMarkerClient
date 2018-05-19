@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add activity</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="activityData" (ngSubmit)="saveData()">
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select formControlName="type" [(ngModel)]="defaultType">
+        <ion-option value="f">Female</ion-option>
+        <ion-option value="m">Male</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" [(ngModel)]="defaultDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <button ion-button icon-only (click)="takePicture()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+      <button ion-button icon-only (click)="pickPicture()">
+        <ion-icon name="images"></ion-icon>
+      </button>
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-item>
+    <ion-item>
+      <button ion-button type="submit" [disabled]="!activityData.valid">Add</button>
+      <button ion-button type="reset" (click)="closeModal()">Cancel</button>
+    </ion-item>
+  </form>
+</ion-content>
