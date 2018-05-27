@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ActivityPage } from './activity';
+import { AddActivityPage } from './addActivity';
 
 @NgModule({
   declarations: [
-    ActivityPage,
+    AddActivityPage,
   ],
   imports: [
-    IonicPageModule.forChild(ActivityPage),
+    IonicPageModule.forChild(AddActivityPage),
   ],
 })
 export class ActivityPageModule {}
