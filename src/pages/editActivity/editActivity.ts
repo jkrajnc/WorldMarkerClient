@@ -1,40 +1,48 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Camera } from '@ionic-native/camera';
 
 @IonicPage()
 @Component({
-  selector: 'page-activity',
-  templateUrl: 'activity.html',
+  selector: 'page-ediActivity',
+  templateUrl: 'editActivity.html',
 })
-export class ActivityPage {
+export class EditActivityPage {
 
   private activityData: FormGroup;
   private base64Image: string;
-  private defaultDate: string;
-  private defaultType: string;
+  private varType: string;
 
-  constructor(private viewCtrl: ViewController, private formBuilder: FormBuilder, private camera: Camera) {
+  constructor(private viewCtrl: ViewController, private navParams: NavParams, private formBuilder: FormBuilder, private camera: Camera) {
+    //pridobimo in napolnimo podatke
+    const data = this.navParams.get("data");
     this.activityData = this.formBuilder.group({
-      title: ['', Validators.required],
-      description: ['', Validators.required],
-      type: ['', Validators.required],
-      date: ['', Validators.required],
-      image: ['']
+      title: [data.title, Validators.required],
+      type: [data.type, Validators.required],
+      date: [data.date, Validators.required],
+      description: [data.description],
+      image: [data.image],
+      latitude: [data.latitude],
+      longitude: [data.longitude],
+      gameType: [data.gameType],
+      gameCategory: [data.gameCategory]
     });
-    this.defaultDate = new Date().toISOString();
-    this.defaultType = "f";
+    this.base64Image = data.image;
+    this.varType = data.type;
   }
 
-  saveData() {
+  //posljemo podatke forma
+  editData() {
     this.viewCtrl.dismiss(this.activityData);
   }
 
+  //posljemo prazne podatke
   closeModal() {
     this.viewCtrl.dismiss(null);
   }
 
+  //izberemo sliko iz galerije
   pickPicture() {
     this.camera.getPicture({
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -47,6 +55,7 @@ export class ActivityPage {
     });
   }
 
+  //posnamemo novo sliko s kamero
   takePicture() {
     this.camera.getPicture({
       destinationType: this.camera.DestinationType.DATA_URL,

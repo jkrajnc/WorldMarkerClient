@@ -17,19 +17,29 @@
     <ion-item>
       <ion-label>Type</ion-label>
       <ion-select formControlName="type" [(ngModel)]="defaultType">
-        <ion-option value="f">Female</ion-option>
-        <ion-option value="m">Male</ion-option>
+        <ion-option value="dead">Dead animal</ion-option>
+        <ion-option value="tracking">Tracking</ion-option>
+        <ion-option value="work">Work in progress</ion-option>
+        <ion-option value="help">Help</ion-option>
       </ion-select>
+    </ion-item>
+    <ion-item [hidden]="defaultType == 'work' || defaultType == 'help'">
+      <ion-label>Game type</ion-label>
+      <ion-input type="text" formControlName="gameType"></ion-input>
+    </ion-item>
+    <ion-item [hidden]="defaultType == 'work' || defaultType == 'help'">
+      <ion-label>Game category</ion-label>
+      <ion-input type="text" formControlName="gameCategory"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Date</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" [(ngModel)]="defaultDate"></ion-datetime>
     </ion-item>
     <ion-item>
-      <button ion-button icon-only (click)="takePicture()">
+      <button ion-button icon-only type="button" (click)="takePicture()">
         <ion-icon name="camera"></ion-icon>
       </button>
-      <button ion-button icon-only (click)="pickPicture()">
+      <button ion-button icon-only type="button" (click)="pickPicture()">
         <ion-icon name="images"></ion-icon>
       </button>
       <img [src]="base64Image" *ngIf="base64Image" />

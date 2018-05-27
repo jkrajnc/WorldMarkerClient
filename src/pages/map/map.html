@@ -1,13 +1,13 @@
-<!--
-  Generated template for the MapPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
     <ion-title>Map</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openAddReportModal()">
+        <p>Sync</p>
+        <ion-icon name="sync"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,9 +16,13 @@
 <ion-content padding>
   <div #map id="map"></div>
   <div>
-    <button id="addMarker" ion-button icon-end (click) ="addMarkerButton()">
+    <!---<button id="addMarker" ion-button icon-end (click) ="addMarkerButton()">
       <p>Add</p>
       <ion-icon name="pin"></ion-icon>
+    </button>-->
+    <button id="clearMap" ion-button icon-end (click) ="clearMap()">
+      <p>Clear</p>
+      <ion-icon name="trash"></ion-icon>
     </button>
   </div>
 </ion-content>
