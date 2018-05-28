@@ -34,14 +34,6 @@ export class ViewActivityPage {
         value: this.data.description,
         disabled: true
       }],
-      gameType: [{
-        value: this.data.gameType,
-        disabled: true
-      }],
-      gameCategory: [{
-        value: this.data.gameCategory,
-        disabled: true
-      }],
       image: [this.data.image],
       latitude: [this.data.latitude],
       longitude: [this.data.longitude]
