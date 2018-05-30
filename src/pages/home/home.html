@@ -8,11 +8,82 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+ 
+    <ion-segment>
+      <ion-segment-button icon-left value="a1">
+        <ion-icon name="map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+        <div style="margin-top: -27px !important; ">
+          Domov
+        </div>
+      </ion-segment-button>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+      <ion-segment-button icon-left value="a2">
+        <ion-icon name="map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+        <div style="margin-top: -27px !important; ">
+          Lokacija
+        </div>
+      </ion-segment-button>
+
+      <ion-segment-button icon-left value="a3">
+        <ion-icon name="map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+        <div style="margin-top: -27px !important; ">
+          Galerija
+        </div>
+      </ion-segment-button>
+
+        <ion-segment-button icon-left value="a4">
+          <ion-icon name="map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+          <div style="margin-top: -27px !important; ">
+            Nastavitve
+          </div>
+        </ion-segment-button>
+
+    </ion-segment>
+    <ion-grid> <!-- gumbi se bi sami generirali na podlagi števila potovanj-->
+      <ion-row>
+        <a  style="padding-top: 3vh">Seznam potovanj</a>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            <ion-scroll style="width:100%;height:25vh" scrollY="true">
+               <ion-list scroll="true" id="listPotovanja">
+                 <!-- prikaz primera, kjer se vidijo samo tri potovanja v scrollu-->
+                  <button ion-item (click)="buttonClick()">
+                    Potovanje 25.04.2017
+                  </button>
+                  <button ion-item (click)="buttonClick()">
+                      Potovanje 25.04.2017
+                  </button>
+                  <button ion-item (click)="buttonClick()">
+                      Potovanje 25.04.2017
+                  </button>
+                  <button ion-item (click)="buttonClick()">
+                      Potovanje 25.04.2017
+                  </button>
+                  <button ion-item (click)="buttonClick()">
+                      Potovanje 25.04.2017
+                    </button>
+                  <button ion-item (click)="buttonClick()">
+                      Potovanje 25.04.2017
+                  </button>
+            </ion-list>
+            </ion-scroll>    
+          </ion-col>
+        </ion-row>    
+      </ion-grid>
+
+      <!-- se pokaže samo ko kliknemo na eno ized potovanj-->
+<div id="show_det" style="padding-top: 3em">
+<a id="date_pot" style="font-weight: bold; font-size: 1.2em">Izlet 25.04.2017</a>
+<div style="margin-top: 1em"></div>
+<a>Čas začetka: </a><a id="t_zac_pot" style="font-weight: bold">16:50</a>
+<div></div>
+<a>Prepotovana pot: </a><a id="l_pot" style="font-weight: bold">17 km</a>
+<div></div>
+<a>Število zajetih slik: </a><a id="n_pic" style="font-weight: bold">12 slik</a>
+</div>
+    
+   
+
 </ion-content>
