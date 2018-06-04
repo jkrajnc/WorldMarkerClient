@@ -25,55 +25,27 @@
           <ion-icon name="md-globe" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
           <div style="margin-top: -27px !important; ">
               {{ 'LANGUAGE' | translate }}
-          </div>
+          </div>          
         </ion-segment-button>
 
     </ion-segment>
-    <ion-grid> <!-- gumbi se bi sami generirali na podlagi števila potovanj-->
-      <ion-row>
-        <a  style="padding-top: 3vh">Seznam potovanj</a>
-      </ion-row>
-      <ion-row>
-          <ion-col>
-            <ion-scroll style="width:100%;height:25vh" scrollY="true">
-               <ion-list scroll="true" id="listPotovanja">
-                 <!-- prikaz primera, kjer se vidijo samo tri potovanja v scrollu-->
-                  <button ion-item (click)="buttonClick()">
-                    Potovanje 25.04.2017
-                  </button>
-                  <button ion-item (click)="buttonClick()">
-                      Potovanje 25.04.2017
-                  </button>
-                  <button ion-item (click)="buttonClick()">
-                      Potovanje 25.04.2017
-                  </button>
-                  <button ion-item (click)="buttonClick()">
-                      Potovanje 25.04.2017
-                  </button>
-                  <button ion-item (click)="buttonClick()">
-                      Potovanje 25.04.2017
-                    </button>
-                  <button ion-item (click)="buttonClick()">
-                      Potovanje 25.04.2017
-                  </button>
-            </ion-list>
-            </ion-scroll>    
-          </ion-col>
-        </ion-row>    
+    <ion-grid> 
+      <img src="assets/imgs/home_pic.png"  style="padding-top: 1em">
+
+      <div id="info_id" style="padding-top: 1.7em">
+          
+          <a>{{ 'INFO' | translate }}</a><div style="margin-top: 1.2em"></div>
+        <a style="font-size: 1.1em">{{ 'FEATURES' | translate }}</a><div style="margin-top: 0.3em"></div>
+          <a>{{ 'FE01' | translate }}</a><div></div>
+          <a>{{ 'FE02' | translate }}</a><div></div>
+          <a>{{ 'FE03' | translate }}</a><div></div>
+          <a>{{ 'FE04' | translate }}</a><div></div>
+          <a>{{ 'FE05' | translate }}</a><div></div>
+          <a>{{ 'FE06' | translate }}</a><div></div>
+          <a>{{ 'FE07' | translate }}</a><div></div>
+          <a>{{ 'FE08' | translate }}</a>
+ </div>  
       </ion-grid>
 
-      <!-- se pokaže samo ko kliknemo na eno ized potovanj-->
-<div id="show_det" style="padding-top: 3em">
-<a id="date_pot" style="font-weight: bold; font-size: 1.2em">Izlet 25.04.2017</a>
-<div style="margin-top: 1em"></div>
-<a>Čas začetka: </a><a id="t_zac_pot" style="font-weight: bold">16:50</a>
-<div></div>
-<a>Prepotovana pot: </a><a id="l_pot" style="font-weight: bold">17 km</a>
-<div></div>
-<a>Število zajetih slik: </a><a id="n_pic" style="font-weight: bold">12 slik</a>
-</div>
-<ion-buttons>
-  <button ion-button (click)="goAnOtherPage()">Go an Other Page </button>
-  </ion-buttons>
    
 </ion-content>
