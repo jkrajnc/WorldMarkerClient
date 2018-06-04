@@ -12,6 +12,13 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 
 import { I18nDemoModule } from '../pages/i18n-demo/i18n-demo.module';
+import { TranslateModule } from 'ng2-translate/ng2-translate';
+import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
+import { Http } from '@angular/http';
+
+export function createTranslateLoader(http: Http) {
+	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -22,7 +29,12 @@ import { I18nDemoModule } from '../pages/i18n-demo/i18n-demo.module';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    I18nDemoModule
+    I18nDemoModule,
+    TranslateModule.forRoot({
+			provide: TranslateLoader,
+			useFactory: (createTranslateLoader),
+			deps: [Http]
+		}),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
