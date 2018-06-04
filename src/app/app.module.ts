@@ -11,6 +11,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
 
+import { I18nDemoModule } from '../pages/i18n-demo/i18n-demo.module';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -20,6 +22,7 @@ import { Camera } from '@ionic-native/camera';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    I18nDemoModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
