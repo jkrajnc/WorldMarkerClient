@@ -3,28 +3,28 @@
       <ion-segment-button icon-left value="a1">
         <ion-icon name="md-home" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
         <div style="margin-top: -27px !important; ">
-          Domov
+            {{ 'HOME' | translate }}
         </div>
       </ion-segment-button>
 
       <ion-segment-button icon-left value="a2" (click)="maptab()">
         <ion-icon name="md-map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
         <div style="margin-top: -27px !important; ">
-          Lokacija
+            {{ 'MAP' | translate }}
         </div>
       </ion-segment-button>
 
       <ion-segment-button icon-left value="a3" (click)="viewActivitytab()">
         <ion-icon name="md-walk" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
         <div style="margin-top: -27px !important; ">
-          Aktivnost
+            {{ 'ACTIVITY' | translate }}
         </div>
       </ion-segment-button>
 
         <ion-segment-button icon-left value="a4" (click)="settingstab()">
-          <ion-icon name="md-settings" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+          <ion-icon name="md-globe" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
           <div style="margin-top: -27px !important; ">
-            Nastavitve
+              {{ 'LANGUAGE' | translate }}
           </div>
         </ion-segment-button>
 
@@ -76,5 +76,4 @@
   <button ion-button (click)="goAnOtherPage()">Go an Other Page </button>
   </ion-buttons>
    
-	<p>{{ 'HELLO' | translate }}</p>
 </ion-content>

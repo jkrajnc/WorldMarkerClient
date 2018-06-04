@@ -3,21 +3,21 @@
 				<ion-segment-button icon-left value="a1" (click)="hometab()">
 				  <ion-icon name="md-home" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
 				  <div style="margin-top: -27px !important; ">
-					Domov
+						{{ 'HOME' | translate }}
 				  </div>
 				</ion-segment-button>
 		  
 				<ion-segment-button icon-left value="a2" (click)="maptab()">
 				  <ion-icon name="md-map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
 				  <div style="margin-top: -27px !important; ">
-					Lokacija
+						{{ 'MAP' | translate }}
 				  </div>
 				</ion-segment-button>
 		  
 				<ion-segment-button icon-left value="a3" (click)="viewActivitytab()">
 				  <ion-icon name="md-walk" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
 				  <div style="margin-top: -27px !important; ">
-					Aktivnost
+						{{ 'ACTIVITY' | translate }}
 				  </div>
 				</ion-segment-button>
 		  
@@ -30,27 +30,7 @@
 				<ion-radio [value]="lang.code"></ion-radio>
 			</ion-item>
 		</ion-item-group>
-<!--
-		<ion-item-group>
-			<ion-item-divider color="light">Translations</ion-item-divider>
-			<ion-item>
-				<h2>Simple translation string</h2>
-				<p>{{ 'HELLO' | translate }}</p>
-			</ion-item>
-			<ion-item>
-				<h2>Simple translation string again</h2>
-				<p>{{ 'I18N_EXAMPLE' | translate }}</p>
-			</ion-item>
-			<ion-item>
-				<h2>Translation string with a param</h2>
-				<p>{{ 'STRING_WITH_PARAMS' | translate : param }}</p>
-			</ion-item>
-			<ion-item>
-				<h2>Inner content as a key</h2>
-				<p translate [translateParams]="{ value: 'world 3' }">INNER_CONTENT</p>
-			</ion-item>
-		</ion-item-group>
-	-->
+
     </ion-list>
     
  
