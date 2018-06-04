@@ -1,4 +1,27 @@
 <ion-content>
+		<ion-segment>
+				<ion-segment-button icon-left value="a1" (click)="hometab()">
+				  <ion-icon name="md-home" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+				  <div style="margin-top: -27px !important; ">
+					Domov
+				  </div>
+				</ion-segment-button>
+		  
+				<ion-segment-button icon-left value="a2" (click)="maptab()">
+				  <ion-icon name="md-map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+				  <div style="margin-top: -27px !important; ">
+					Lokacija
+				  </div>
+				</ion-segment-button>
+		  
+				<ion-segment-button icon-left value="a3" (click)="viewActivitytab()">
+				  <ion-icon name="md-walk" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+				  <div style="margin-top: -27px !important; ">
+					Aktivnost
+				  </div>
+				</ion-segment-button>
+		  
+			</ion-segment>
 	<ion-list>
 		<ion-item-group radio-group (ionChange)="applyLanguage()" [(ngModel)]="selectedLanguage">
 			<ion-item-divider color="light">Languages</ion-item-divider>
@@ -7,7 +30,7 @@
 				<ion-radio [value]="lang.code"></ion-radio>
 			</ion-item>
 		</ion-item-group>
-
+<!--
 		<ion-item-group>
 			<ion-item-divider color="light">Translations</ion-item-divider>
 			<ion-item>
@@ -27,10 +50,9 @@
 				<p translate [translateParams]="{ value: 'world 3' }">INNER_CONTENT</p>
 			</ion-item>
 		</ion-item-group>
+	-->
     </ion-list>
     
-    <ion-buttons>
-        <button ion-button (click)="goAnOtherPage()">Go an Other Page </button>
-        </ion-buttons>
+ 
          
 </ion-content>
