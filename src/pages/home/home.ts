@@ -4,6 +4,7 @@ import { I18nDemoPage } from '../i18n-demo/i18n-demo.page';
 import { MapPage } from '../map/map';
 import { ViewActivityPage } from '../viewActivity/viewActivity';
 
+// Importanje service providanje
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 
@@ -16,19 +17,23 @@ import { WebservicesProvider } from '../../providers/webservices/webservices';
 export class HomePage {
 
   
-
+                                              // Dodajanje atributa v konstruktor
   constructor(public navCtrl: NavController, public webservices: WebservicesProvider ) {
 
   }
 
   /*
+  Klicanje get metode in pridobivanje podatkov iz promisa
   const data = this.webservices.getSlika();
     data.then(podatki => {
       console.log("podatki");
       console.log(podatki);      
     });
 
-    this.webservices.postSlika("NazivSlik", "ImgData");
+    // Klicanje post metode
+    const NazviSlike = "Rrimer"
+    const ImgData = "Primer2"
+    this.webservices.postSlika(NazivSlike, ImgData);
   */
 
 
