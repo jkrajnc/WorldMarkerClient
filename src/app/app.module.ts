@@ -20,6 +20,12 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http' 
 
+
+import { WebservicesProvider } from '../providers/webservices/webservices';
+
+
+
+
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
 }
@@ -54,7 +60,8 @@ export function createTranslateLoader(http: Http) {
     SplashScreen,
     Geolocation,
     Camera,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    WebservicesProvider
   ]
 })
 export class AppModule {}
