@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Add activity</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="activityData" (ngSubmit)="saveData()">
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select formControlName="type" [(ngModel)]="defaultType">
+        <ion-option value="dead">Dead animal</ion-option>
+        <ion-option value="tracking">Tracking</ion-option>
+        <ion-option value="work">Work in progress</ion-option>
+        <ion-option value="help">Help</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item [hidden]="defaultType == 'work' || defaultType == 'help'">
+      <ion-label>Game type</ion-label>
+      <ion-input type="text" formControlName="gameType"></ion-input>
+    </ion-item>
+    <ion-item [hidden]="defaultType == 'work' || defaultType == 'help'">
+      <ion-label>Game category</ion-label>
+      <ion-input type="text" formControlName="gameCategory"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" [(ngModel)]="defaultDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <button ion-button icon-only type="button" (click)="takePicture()">
+        <ion-icon name="camera"></ion-icon>
+      </button>
+      <button ion-button icon-only type="button" (click)="pickPicture()">
+        <ion-icon name="images"></ion-icon>
+      </button>
+      <img [src]="base64Image" *ngIf="base64Image" />
+    </ion-item>
+    <ion-item>
+      <button ion-button type="submit" [disabled]="!activityData.valid">Add</button>
+      <button ion-button type="reset" (click)="closeModal()">Cancel</button>
+    </ion-item>
+  </form>
+</ion-content>

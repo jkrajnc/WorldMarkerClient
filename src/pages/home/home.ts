@@ -4,10 +4,7 @@ import { I18nDemoPage } from '../i18n-demo/i18n-demo.page';
 import { MapPage } from '../map/map';
 import { ViewActivityPage } from '../viewActivity/viewActivity';
 
-// Importanje service providanje
 import { WebservicesProvider } from '../../providers/webservices/webservices';
-
-
 
 
 @Component({
@@ -22,6 +19,7 @@ export class HomePage {
 
   }
 
+
   /*
   Klicanje get metode in pridobivanje podatkov iz promisa
   const data = this.webservices.getSlika();
@@ -35,6 +33,7 @@ export class HomePage {
     const ImgData = "Primer2"
     this.webservices.postSlika(NazivSlike, ImgData);
   */
+
 
 
   

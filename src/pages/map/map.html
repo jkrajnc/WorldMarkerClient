@@ -1,0 +1,64 @@
+<!--<ion-header>
+
+  <ion-navbar>
+    <ion-title>Map</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openAddReportModal()">
+        <p>Sync</p>
+        <ion-icon name="sync"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+-->
+
+
+<ion-content padding>
+    <ion-segment>
+        <ion-segment-button icon-left value="a1"  (click)="hometab()">
+          <ion-icon name="md-home" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+          <div style="margin-top: -24px !important; ">
+              {{ 'HOME' | translate }}
+          </div>
+        </ion-segment-button>
+  
+        <ion-segment-button icon-left value="a3" (click)="viewActivitytab()">
+          <ion-icon name="md-walk" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+          <div style="margin-top: -24px !important; ">
+              {{ 'ACTIVITY' | translate }}
+          </div>
+        </ion-segment-button>
+  
+          <ion-segment-button icon-left value="a4" (click)="settingstab()">
+            <ion-icon name="md-globe" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+            <div style="margin-top: -24px !important; ">
+                {{ 'LANGUAGE' | translate }}
+            </div>          
+          </ion-segment-button>
+  
+      </ion-segment>
+
+  <div #map id="map"></div>
+  <div>
+    <!---<button id="addMarker" ion-button icon-end (click) ="addMarkerButton()">
+      <p>Add</p>
+      <ion-icon name="pin"></ion-icon>
+    </button>-->
+    <ion-row>
+        <ion-col align="center">
+            <button id="clearMap" ion-button icon-end (click) ="clearMap()">
+                <p>Clear</p>
+                <ion-icon name="trash"></ion-icon>
+              </button>
+        </ion-col>
+        <ion-col align="center">
+            <button id="syncid" ion-button icon-end (click)="openAddReportModal()">
+                <p>Sync</p>
+                <ion-icon name="sync"></ion-icon>
+              </button>
+        </ion-col>
+      </ion-row>
+  </div>
+
+</ion-content>

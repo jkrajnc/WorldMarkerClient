@@ -1,0 +1,55 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title end>View Activity</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openEditActivityModal()">
+        <p>Edit</p>
+        <ion-icon name="clipboard"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="activityData" (ngSubmit)="saveData()">
+    <ion-item>
+      <ion-label>Title</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Type</ion-label>
+      <ion-select formControlName="type" [(ngModel)]="varType">
+        <ion-option value="dead">Dead animal</ion-option>
+        <ion-option value="tracking">Tracking</ion-option>
+        <ion-option value="work">Work in progress</ion-option>
+        <ion-option value="help">Help</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item [hidden]="varType == 'work' || varType == 'help'">
+      <ion-label>Game type</ion-label>
+      <ion-input type="text" formControlName="gameType"></ion-input>
+    </ion-item>
+    <ion-item [hidden]="varType == 'work' || varType == 'help'">
+      <ion-label>Game category</ion-label>
+      <ion-input type="text" formControlName="gameCategory"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <img [src]="base64Image" *ngIf="base64Image" alt="Image"/>
+    </ion-item>
+    <ion-item>
+      <button ion-button type="button" (click)="closeModal()">OK</button>
+      <button ion-button type="button" (click)="deleteActivity()">Delete</button>
+    </ion-item>
+  </form>
+</ion-content>

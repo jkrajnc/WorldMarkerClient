@@ -20,7 +20,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http' 
 
+
 import { WebservicesProvider } from '../providers/webservices/webservices';
+
 
 
 
