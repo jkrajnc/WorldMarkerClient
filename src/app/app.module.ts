@@ -16,6 +16,10 @@ import { TranslateModule } from 'ng2-translate/ng2-translate';
 import { TranslateLoader, TranslateStaticLoader } from 'ng2-translate/src/translate.service';
 import { Http } from '@angular/http';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http' 
+
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
 }
@@ -27,8 +31,11 @@ export function createTranslateLoader(http: Http) {
     MapPage
   ],
   imports: [
+    HttpModule,
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
     I18nDemoModule,
     TranslateModule.forRoot({
 			provide: TranslateLoader,

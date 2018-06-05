@@ -88,6 +88,7 @@
         <variable name="PLAY_SERVICES_VERSION" value="15.0.1" />
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="26.1.0" />
     </plugin>
-    <engine name="android" spec="7.0.0" />
     <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
+    <engine name="android" spec="~7.0.0" />
+    <plugin name="cordova-sqlite-storage" spec="^2.3.2" />
 </widget>
