@@ -6,6 +6,10 @@ import { Storage } from '@ionic/storage';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
+import { HomePage } from '../home/home';
+import { ViewActivityPage } from '../viewActivity/viewActivity';
+import { I18nDemoPage } from '../i18n-demo/i18n-demo.page';
+
 @Component({
   selector: 'page-map',
   templateUrl: 'map.html'
@@ -180,5 +184,17 @@ export class MapPage {
       indexTemp++;
     });
   }
+
+
+  hometab(){
+		this.navCtrl.push(HomePage);
+    }
+    viewActivitytab(){
+      this.navCtrl.push(ViewActivityPage);
+    }
+
+    settingstab(){
+      this.navCtrl.push(I18nDemoPage);
+    }
 
 }
