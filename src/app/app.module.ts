@@ -5,6 +5,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/map/map';
+import { GalleryPage } from '../pages/gallery/gallery';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,7 +36,8 @@ export function createTranslateLoader(http: Http) {
   declarations: [
     MyApp,
     HomePage,
-    MapPage
+    MapPage,
+    GalleryPage
   ],
   imports: [
     HttpModule,
@@ -53,7 +56,8 @@ export function createTranslateLoader(http: Http) {
   entryComponents: [
     MyApp,
     HomePage,
-    MapPage
+    MapPage,
+    GalleryPage
   ],
   providers: [
     StatusBar,

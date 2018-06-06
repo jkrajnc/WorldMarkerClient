@@ -13,6 +13,8 @@
 						{{ 'MAP' | translate }}
 				  </div>
 				</ion-segment-button>
+
+				
 		  
 				<ion-segment-button icon-left value="a3" (click)="viewActivitytab()">
 				  <ion-icon name="md-walk" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
@@ -20,6 +22,13 @@
 						{{ 'ACTIVITY' | translate }}
 				  </div>
 				</ion-segment-button>
+
+				<ion-segment-button icon-left value="a4" (click)="viewGallery()">
+						<ion-icon name="md-photos" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+						<div style="margin-top: -24px !important; ">
+								{{ 'GALLERY' | translate }}
+						</div>
+					</ion-segment-button>
 		  
 			</ion-segment>
 	<ion-list  style="padding-top: 3vh">
@@ -36,3 +45,4 @@
  
          
 </ion-content>
+

@@ -16,7 +16,7 @@ export class WebservicesProvider {
 
   async getKordinate() {
    
-    const url = `http://localhost:3000/kordinate`;
+    const url = `https://murmuring-mountain-34739.herokuapp.com/kordinate`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.message == "Ni kordinat") {
@@ -44,7 +44,7 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
 
     var rows = JSON.parse(JSON.stringify(postParams));
     console.log(rows)
-    this.http.post("http://localhost:3000/kordinate", postParams, options)
+    this.http.post("https://murmuring-mountain-34739.herokuapp.com/kordinate", postParams, options)
       .subscribe(data => {
         console.log(data['_body']);
        }, error => {
@@ -54,7 +54,7 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
 
 async getPotovanja() {
 
-    const url = `http://localhost:3000/potovanja`;
+    const url = `https://murmuring-mountain-34739.herokuapp.com/potovanja`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.message == "Ni potovanj") {
@@ -76,7 +76,7 @@ postPotovanja (NazivPotovanja, Pot) {
 
     var rows = JSON.parse(JSON.stringify(postParams));
     //console.log(rows)
-    this.http.post("http://localhost:3000/potovanja", postParams, options)
+    this.http.post("https://murmuring-mountain-34739.herokuapp.com/potovanja", postParams, options)
       .subscribe(data => {
         console.log(data['_body']);
        }, error => {
@@ -86,7 +86,7 @@ postPotovanja (NazivPotovanja, Pot) {
 
 async getSlika() {
 
-    const url = `http://localhost:3000/slika`;
+    const url = `https://murmuring-mountain-34739.herokuapp.com/slika`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.message == "Ni potovanj") {
@@ -109,7 +109,7 @@ postSlika (NazivSlike, ImgData) {
 
     var rows = JSON.parse(JSON.stringify(postParams));
     //console.log(rows)
-    this.http.post("http://localhost:3000/slika", postParams, options)
+    this.http.post("https://murmuring-mountain-34739.herokuapp.com/slika", postParams, options)
       .subscribe(data => {
         console.log(data['_body']);
        }, error => {
@@ -119,7 +119,7 @@ postSlika (NazivSlike, ImgData) {
 
 async getSlikaZKordinatom() {
 
-    const url = `http://localhost:3000/slikazkordinatom`;
+    const url = `https://murmuring-mountain-34739.herokuapp.com/slikazkordinatom`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.message == "Ni potovanj") {
@@ -144,7 +144,7 @@ postSlikaZKordinatom (NazivSlike, ImgData, NazivKordinat, Latitude, Longitude) {
 
     var rows = JSON.parse(JSON.stringify(postParams));
     //console.log(rows)
-    this.http.post("http://localhost:3000/slikazkordinatom", postParams, options)
+    this.http.post("https://murmuring-mountain-34739.herokuapp.com/slikazkordinatom", postParams, options)
       .subscribe(data => {
         console.log(data['_body']);
        }, error => {
@@ -154,7 +154,7 @@ postSlikaZKordinatom (NazivSlike, ImgData, NazivKordinat, Latitude, Longitude) {
 
 async getUporabnik() {
 
-    const url = `http://localhost:3000/uporabnik`;
+    const url = `https://murmuring-mountain-34739.herokuapp.com/uporabnik`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.message == "Ni potovanj") {
@@ -179,7 +179,7 @@ postUporabnika (Username, Password, Name, Priimek, Email) {
 
     //var rows = JSON.parse(JSON.stringify(postParams));
     //console.log(rows)
-    this.http.post("http://localhost:3000/slikazkordinatom", postParams, options)
+    this.http.post("https://murmuring-mountain-34739.herokuapp.com/slikazkordinatom", postParams, options)
       .subscribe(data => {
         console.log(data['_body']);
        }, error => {

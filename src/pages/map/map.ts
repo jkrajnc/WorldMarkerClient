@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform, ModalController, Modal, AlertController } from 'ionic-angular';
+import { NavController, Platform, ModalController, Modal, AlertController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, MarkerOptions, Marker, LatLng, GoogleMapsAnimation, GoogleMapsMapTypeId } from '@ionic-native/google-maps';
 import { Storage } from '@ionic/storage';
@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 import { HomePage } from '../home/home';
 import { ViewActivityPage } from '../viewActivity/viewActivity';
 import { I18nDemoPage } from '../i18n-demo/i18n-demo.page';
+import { GalleryPage } from '../gallery/gallery';
 
 @Component({
   selector: 'page-map',
@@ -21,7 +22,7 @@ export class MapPage {
   index: number;
 
   constructor(private navCtrl: NavController, private platform: Platform, private modalCtrl: ModalController,
-    private geolocation: Geolocation, private storage: Storage, private alertCtrl: AlertController, private http: HttpClient) {
+    private geolocation: Geolocation, private storage: Storage, public navParams: NavParams, private alertCtrl: AlertController, private http: HttpClient) {
     //ko se vse zazene inicializiramo mapo
     platform.ready().then(() => {
       this.initMap();
@@ -56,20 +57,23 @@ export class MapPage {
   }*/
 
   initMap() {
-    let mapOptions: GoogleMapOptions = {
-      mapTypeId: GoogleMapsMapTypeId.ROADMAP,
-      camera: {
-        target: {
-          lat: 40.730610,
-          lng: -73.935242
-        },
-        zoom: 16,
-        tilt: 30
-      }
-    };
-
-    this.map = GoogleMaps.create('map', mapOptions);
-    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
+    if (typeof this.navParams.get('Latitude') === "undefined") {
+      let mapOptions: GoogleMapOptions = {
+        mapTypeId: GoogleMapsMapTypeId.ROADMAP,
+        camera: {
+          target: {
+            lat: 46.5637542,
+            lng: 15.6469096,
+          },
+          zoom: 16,
+          tilt: 30
+        }
+      };
+      this.map = GoogleMaps.create('map', mapOptions);
+      this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
+    } else {
+      //this.showMapAndMarker()
+    }
   }
 
   //ob kliku prvo pridobimo koordinate klika, ki jih nato posljemo v modalno okno
@@ -196,5 +200,38 @@ export class MapPage {
     settingstab(){
       this.navCtrl.push(I18nDemoPage);
     }
+
+    viewGallery(){
+      this.navCtrl.push(GalleryPage);
+    } 
+    /*
+    showMapAndMarker(){
+      let mapOptions: GoogleMapOptions = {
+        mapTypeId: GoogleMapsMapTypeId.ROADMAP,
+        camera: {
+          target: {
+            lat: this.navParams.get('Latitude'),
+            lng: this.navParams.get('Longitude')
+          },
+          zoom: 16,
+          tilt: 30
+        }
+      };
+      
+      this.map = GoogleMaps.create('map', mapOptions);
+      this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
+
+      console.log(this.map);
+      
+
+      let options: MarkerOptions = {
+        title: this.navParams.get('NazivKordinat'),
+        position: { lat: this.navParams.get('Latitude'), lng: this.navParams.get('Longitude') },
+        animation: GoogleMapsAnimation.DROP
+      };
+      console.log("DelaDosemTudi");
+      this.map.addMarker(options);
+    }
+    */
 
 }
