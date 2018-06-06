@@ -7,6 +7,8 @@ import { TranslateService } from 'ng2-translate';
 import { HomePage } from '../home/home';
 import { MapPage } from '../map/map';
 import { ViewActivityPage } from '../viewActivity/viewActivity';
+import { GalleryPage } from '../gallery/gallery';
+
 
 @Component({
 	templateUrl: 'i18n-demo.html'
@@ -40,6 +42,10 @@ export class I18nDemoPage {
   
   viewActivitytab(){
 		this.navCtrl.push(ViewActivityPage);
+  }
+
+  viewGallery(){
+	this.navCtrl.push(GalleryPage);
   }
 
 

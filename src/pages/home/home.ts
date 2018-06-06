@@ -3,7 +3,10 @@ import { NavController } from 'ionic-angular';
 import { I18nDemoPage } from '../i18n-demo/i18n-demo.page';
 import { MapPage } from '../map/map';
 import { ViewActivityPage } from '../viewActivity/viewActivity';
+import { GalleryPage } from '../gallery/gallery';
 
+
+// Importanje service providanje
 import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 
@@ -47,6 +50,10 @@ export class HomePage {
   
   viewActivitytab(){
 		this.navCtrl.push(ViewActivityPage);
+  }
+
+  viewGallery(){
+		this.navCtrl.push(GalleryPage);
   }
 
 
