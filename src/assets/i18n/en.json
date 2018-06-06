@@ -1,0 +1,19 @@
+{
+  "HOME": "HOME",
+  "MAP": "MAP",
+  "ACTIVITY": "ACTIVITY",
+  "GALLERY": "GALLERY",
+  "LANGUAGE": "LANGUAGE",
+  "INFO": "TVA team introduce a great app for real time location tracking, marking spots on map and overview our activity.",
+  "TEAM":"Our team",
+  "FEATURES":"Features:",
+ "FE01":"★ Display map,",
+ "FE02":"★ Geolocation,",
+ "FE03":"★ Take a photo,",
+ "FE04":"★ Map markers,",
+ "FE05":"★ Detailed information for the marker,",
+ "FE06":"★ Save progress (local storage),",
+ "FE07":"★ Review detailed activity data,",
+ "FE08":"★ Changing activity data"
+
+}

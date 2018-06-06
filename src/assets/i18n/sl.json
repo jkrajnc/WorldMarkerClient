@@ -1,0 +1,20 @@
+{
+    "HOME": "DOMOV",
+    "MAP": "MAPA",
+    "ACTIVITY": "AKTIVNOST",
+    "GALLERY": "GALERIJA",
+    "LANGUAGE": "JEZIK",
+    "INFO": "Smo skupina TVA, ki vam predstavlja odlično aplikacijo, katera omogoča prikaz trenutne lokacije, označevanje mest na zemljevidu ter pregled naših dejavnosti.",
+    "TEAM":"Naša skupina",
+    "FEATURES":"Funkcionalnosti:",
+    "FE01":"★ Prikaz mape,",
+    "FE02":"★ Lokacija uporabnika,",
+    "FE03":"★ Zajem fotografije,",
+    "FE04":"★ Označevanje na mapi,",
+    "FE05":"★ Dodatne informacije o označenem mestu,",
+    "FE06":"★ Shranjevanje napredka,",
+    "FE07":"★ Pregled aktivnosti,",
+    "FE08":"★ Spreminjanje podatkov aktivnosti"
+
+
+  }

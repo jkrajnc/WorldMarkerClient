@@ -1,0 +1,48 @@
+<ion-content padding>
+		<ion-segment>
+				<ion-segment-button icon-left value="a1" (click)="hometab()">
+				  <ion-icon name="md-home" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+				  <div style="margin-top: -24px !important; ">
+						{{ 'HOME' | translate }}
+				  </div>
+				</ion-segment-button>
+		  
+				<ion-segment-button icon-left value="a2" (click)="maptab()">
+				  <ion-icon name="md-map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+				  <div style="margin-top: -24px !important; ">
+						{{ 'MAP' | translate }}
+				  </div>
+				</ion-segment-button>
+
+				
+		  
+				<ion-segment-button icon-left value="a3" (click)="viewActivitytab()">
+				  <ion-icon name="md-walk" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+				  <div style="margin-top: -24px !important; ">
+						{{ 'ACTIVITY' | translate }}
+				  </div>
+				</ion-segment-button>
+
+				<ion-segment-button icon-left value="a4" (click)="viewGallery()">
+						<ion-icon name="md-photos" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+						<div style="margin-top: -24px !important; ">
+								{{ 'GALLERY' | translate }}
+						</div>
+					</ion-segment-button>
+		  
+			</ion-segment>
+	<ion-list  style="padding-top: 3vh">
+		<ion-item-group radio-group (ionChange)="applyLanguage()" [(ngModel)]="selectedLanguage">
+			<ion-item-divider color="light">Languages</ion-item-divider>
+			<ion-item *ngFor="let lang of languages">
+				<ion-label>{{lang.name}}</ion-label>
+				<ion-radio [value]="lang.code"></ion-radio>
+			</ion-item>
+		</ion-item-group>
+
+    </ion-list>
+    
+ 
+         
+</ion-content>
+

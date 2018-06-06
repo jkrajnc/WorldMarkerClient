@@ -1,18 +1,80 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content padding> 
+    <ion-segment>
+      <ion-segment-button icon-left value="a1">
+        <ion-icon name="md-home" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+        <div style="margin-top: -24px !important; ">
+            {{ 'HOME' | translate }}
+        </div>
+      </ion-segment-button>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+      <ion-segment-button icon-left value="a2" (click)="maptab()">
+        <ion-icon name="md-map" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+        <div style="margin-top: -24px !important; ">
+            {{ 'MAP' | translate }}
+        </div>
+      </ion-segment-button>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+      <ion-segment-button icon-left value="a3" (click)="viewActivitytab()">
+        <ion-icon name="md-walk" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+        <div style="margin-top: -24px !important; ">
+            {{ 'ACTIVITY' | translate }}
+        </div>
+      </ion-segment-button>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+      <ion-segment-button icon-left value="a4" (click)="viewGallery()">
+        <ion-icon name="md-photos" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+        <div style="margin-top: -24px !important; ">
+            {{ 'GALLERY' | translate }}
+        </div>
+      </ion-segment-button>
+
+        <ion-segment-button icon-left value="a5" (click)="settingstab()">
+          <ion-icon name="md-globe" style="padding-right: 0em;     line-height: 0rem;"></ion-icon>
+          <div style="margin-top: -24px !important; ">
+              {{ 'LANGUAGE' | translate }}
+          </div>          
+        </ion-segment-button>
+
+    </ion-segment>
+    <ion-grid> 
+      <img src="assets/imgs/home_pic.png"  style="padding-top: 1em">
+
+      <div id="info_id" style="padding-top: 1.7em">
+          
+          <a>{{ 'INFO' | translate }}</a><div style="margin-top: 1.2em"></div>
+        <a style="font-size: 1.1em">{{ 'FEATURES' | translate }}</a><div style="margin-top: 0.3em"></div>
+          <a>{{ 'FE01' | translate }}</a><div></div>
+          <a>{{ 'FE02' | translate }}</a><div></div>
+          <a>{{ 'FE03' | translate }}</a><div></div>
+          <a>{{ 'FE04' | translate }}</a><div></div>
+          <a>{{ 'FE05' | translate }}</a><div></div>
+          <a>{{ 'FE06' | translate }}</a><div></div>
+          <a>{{ 'FE07' | translate }}</a><div></div>
+          <a>{{ 'FE08' | translate }}</a>
+ </div>  
+      </ion-grid>
+      <ion-grid style="padding-top: 1.7em">
+          <ion-row>
+              <ion-col align="center">
+                  {{ 'TEAM' | translate }}
+                </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col align="center">
+                <img src="assets/imgs/jktva.png"  style="padding-top: 1em">
+                <div></div>Jan<div></div>
+                Krajnc
+            </ion-col>
+            <ion-col align="center">
+                <img src="assets/imgs/mdtva.png"  style="padding-top: 1em">
+                <div></div>Marko<div></div>
+                Deželak
+            </ion-col>
+            <ion-col align="center">
+                <img src="assets/imgs/dstva.png"  style="padding-top: 1em">
+                <div></div>Danijel<div></div>
+                Šmon
+            </ion-col>
+          </ion-row>
+        </ion-grid>   
 </ion-content>

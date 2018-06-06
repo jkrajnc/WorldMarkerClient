@@ -9,5 +9,6 @@ import { ViewActivityPage } from './viewActivity';
   imports: [
     IonicPageModule.forChild(ViewActivityPage),
   ],
+ 
 })
 export class ViewActivityPageModule {}

@@ -4,6 +4,7 @@
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "noStrictGenericChecks": true,
     "lib": [
       "dom",
       "es2015"
@@ -25,4 +26,5 @@
   "atom": {
     "rewriteTsconfig": false
   }
+  
 }
