@@ -25,12 +25,10 @@ export class AddActivityPage {
       image: [null],
       latitude: [null],
       longitude: [null],
-      gameType: [null],
-      gameCategory: [null]
     });
     //default podatki, ki se prikazejo na formu ob odprtju
     this.defaultDate = new Date().toISOString();
-    this.defaultType = "dead";
+    this.defaultType = "memory";
   }
 
   //posljemo podatke forma

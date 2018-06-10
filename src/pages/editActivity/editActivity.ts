@@ -25,8 +25,6 @@ export class EditActivityPage {
       image: [data.image],
       latitude: [data.latitude],
       longitude: [data.longitude],
-      gameType: [data.gameType],
-      gameCategory: [data.gameCategory]
     });
     this.base64Image = data.image;
     this.varType = data.type;
