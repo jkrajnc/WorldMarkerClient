@@ -32,7 +32,7 @@ export class GalleryPage {
   ionViewDidLoad() {
     //console.log("dela");
     this.items = [];
-    const podatki = this.webservices.getSlikaZKordinatom();
+    const podatki = this.webservices.getVseSlike();
     podatki.then(data => {
       if (data == null) {
       } else {
@@ -66,9 +66,9 @@ export class GalleryPage {
     }
 
     showOnMap(slika){
-      //this.navCtrl.push(MapPage, slika);
+      this.navCtrl.push(MapPage, slika);
     }
     addNewSlika(){
-     //this.navCtrl.push(AddActivityPage);
+      this.navCtrl.push(AddActivityPage);
     }
 }

@@ -10,10 +10,13 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 @Injectable()
 export class WebservicesProvider {
 
+  povezava:string = "https://murmuring-mountain-34739.herokuapp.com";
+
   constructor(public http: Http) {
     console.log('Hello WebservicesProvider Provider');
   }
 
+  /*
   async getKordinate() {
    
     const url = `https://murmuring-mountain-34739.herokuapp.com/kordinate`;
@@ -51,51 +54,111 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
         console.log(error);// Error posting the data
       });
 };
+*/
 
-async getPotovanja() {
+async getPotovanja(IdUporabnika) {
 
-    const url = `https://murmuring-mountain-34739.herokuapp.com/potovanja`;
+    const url = `${this.povezava}/potovanje/${IdUporabnika}`;
+    //console.log(url);
     const response = await fetch(url);
     const data = await response.json();
+    //console.log("Dela");
     if (data.message == "Ni potovanj") {
       //this.showAlert();
     } else {
-      return data;
+      var stevec = 0;
+      for (var stevec = 0; stevec < data.length; stevec++){
+        var aktivnosti = this.getAktivnostiOdPotovanja(data[stevec]["IdPotovanje"]);
+        aktivnosti.then(function(result) {
+          //console.log(stevec)
+          data[stevec-1]["Aktivnosti"] = result;      
+        }); 
+      }
+      console.log(data)
+      //console.log(data)
     }      
 };
 
-postPotovanja (NazivPotovanja, Pot) {
+async getAktivnostiOdPotovanja(IdPotovanja) {
+
+  const url = `${this.povezava}/aktivnosti/${IdPotovanja}`;
+  //console.log(url);
+  const response = await fetch(url);
+  const data = await response.json();
+  //console.log(data);
+  if (data.message == "Ni potovanj") {
+    //this.showAlert();
+  } else {
+    return data;
+  }      
+};
+
+postPotovanja (NazivPotovanja, OpisPotovanja, DatumPotovanja, ArrayAktivnosti) {
     var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json' );
     let options = new RequestOptions({ headers: headers });
     const postParams = {
-      naziv: NazivPotovanja,
-      pot: Pot,
+      nazivPotovanja: NazivPotovanja,
+      opisPotovanja: OpisPotovanja,
+      datumPotovanja: DatumPotovanja,
     }
-
-    var rows = JSON.parse(JSON.stringify(postParams));
     //console.log(rows)
-    this.http.post("https://murmuring-mountain-34739.herokuapp.com/potovanja", postParams, options)
+    this.http.post(`${this.povezava}/potovanje`, postParams, options)
       .subscribe(data => {
-        console.log(data['_body']);
+          console.log(data["_body"]);
+          console.log(ArrayAktivnosti.length)
+          for (var stevec = 0; stevec < ArrayAktivnosti.length; stevec++){
+            this.postAktivnost(ArrayAktivnosti[stevec]["nazivAktivnosti"], ArrayAktivnosti[stevec]["opisAktivnosti"], 
+            ArrayAktivnosti[stevec]["tipAktivnosti"], ArrayAktivnosti[stevec]["datumAktivnosti"], 
+            ArrayAktivnosti[stevec]["latitude"], ArrayAktivnosti[stevec]["longitude"], 
+            ArrayAktivnosti[stevec]["nazivSlike"], ArrayAktivnosti[stevec]["ImgData"], 
+            data["_body"])
+          }
+
        }, error => {
         console.log(error);// Error posting the data
       });
 };
 
-async getSlika() {
+postAktivnost (nazivAktivnosti, opisAktivnosti, tipAktivnosti, datumAktivnosti, latitude, longitude, nazivSlike, ImgData, IdPotovanja) {
+  var headers = new Headers();
+  headers.append("Accept", 'application/json');
+  headers.append('Content-Type', 'application/json' );
+  let options = new RequestOptions({ headers: headers });
+  const postParams = {
+    nazivAktivnosti: nazivAktivnosti,
+    opisAktivnosti: opisAktivnosti,
+    tipAktivnosti: tipAktivnosti,
+    datumAktivnosti: datumAktivnosti,
+    latitude: latitude,
+    longitude: longitude,
+    nazivSlike: nazivSlike,
+    ImgData: ImgData,
+    IdPotovanja: IdPotovanja,
+  }
+  //console.log(rows)
+  this.http.post(`${this.povezava}/aktivnosti`, postParams, options)
+    .subscribe(data => {
+      console.log(data);
+      
+     }, error => {
+      console.log(error);// Error posting the data
+    });
+};
 
-    const url = `https://murmuring-mountain-34739.herokuapp.com/slika`;
+async getVseSlike() {
+
+    const url = `${this.povezava}/slika`;
     const response = await fetch(url);
     const data = await response.json();
-    if (data.message == "Ni potovanj") {
+    if (data.message == "Ni slik") {
       //this.showAlert();
     } else {
       return data;
     }      
 };
-
+/*
 postSlika (NazivSlike, ImgData) {
 
     var headers = new Headers();
@@ -151,10 +214,11 @@ postSlikaZKordinatom (NazivSlike, ImgData, NazivKordinat, Latitude, Longitude) {
         console.log(error);// Error posting the data
       });
 };
+*/
 
 async getUporabnik() {
 
-    const url = `https://murmuring-mountain-34739.herokuapp.com/uporabnik`;
+    const url = `${this.povezava}/uporabnik`;
     const response = await fetch(url);
     const data = await response.json();
     if (data.message == "Ni potovanj") {
@@ -179,12 +243,26 @@ postUporabnika (Username, Password, Name, Priimek, Email) {
 
     //var rows = JSON.parse(JSON.stringify(postParams));
     //console.log(rows)
-    this.http.post("https://murmuring-mountain-34739.herokuapp.com/slikazkordinatom", postParams, options)
+    this.http.post(`${this.povezava}/slikazkordinatom`, postParams, options)
       .subscribe(data => {
         console.log(data['_body']);
        }, error => {
         console.log(error);// Error posting the data
       });
 };
+
+async getZanimivosti() {
+
+  const url = `${this.povezava}/zanimivosti`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.message == "Ni zanimivosti") {
+    //this.showAlert();
+  } else {
+    return data;
+  }      
+};
+
+
 
 }
