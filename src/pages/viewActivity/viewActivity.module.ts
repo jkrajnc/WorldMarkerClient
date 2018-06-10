@@ -11,4 +11,4 @@ import { ViewActivityPage } from './viewActivity';
   ],
  
 })
-export class ViewActivityPageModule {}
+export class ViewActivityPageModule1 {}

@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-//import { IonicPage, ViewController, NavParams, ModalController, Modal } from 'ionic-angular';
-import { ViewController, NavParams, ModalController, Modal } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams, ModalController, Modal } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-viewActivity',
   templateUrl: 'viewActivity.html',
