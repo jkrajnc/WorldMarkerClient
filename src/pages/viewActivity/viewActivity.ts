@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-//import { IonicPage, ViewController, NavParams, ModalController, Modal } from 'ionic-angular';
-import { ViewController, NavParams, ModalController, Modal } from 'ionic-angular';
+import { IonicPage, ViewController, NavParams, ModalController, Modal } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-viewActivity',
   templateUrl: 'viewActivity.html',
@@ -33,14 +32,6 @@ export class ViewActivityPage {
       }],
       description: [{
         value: this.data.description,
-        disabled: true
-      }],
-      gameType: [{
-        value: this.data.gameType,
-        disabled: true
-      }],
-      gameCategory: [{
-        value: this.data.gameCategory,
         disabled: true
       }],
       image: [this.data.image],

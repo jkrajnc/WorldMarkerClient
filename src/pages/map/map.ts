@@ -146,9 +146,6 @@ export class MapPage {
       if (data2 == "Delete") {
         binder[1].remove();
         this.storage.get('markerData').then((markerData) => {
-          /*this.compareArrays(markerData, data1).then(binder => {
-            console.log(binder);
-          });*/
           this.compareArrays(markerData, data1);
           markerData.splice(this.index, 1);
           this.storage.set('markerData', markerData);
@@ -161,6 +158,48 @@ export class MapPage {
           binder[1].remove();
           this.generateMarkers([data2[1]]);
         });
+      }
+    });
+  }
+
+  //ustvarimo modalno okno za porocilo
+  openAddTripModal() {
+    //preverimo ce sploh imamo markerje na zemljevidu, ce jih ni ustvarimo alert
+    this.storage.get('markerData').then((markerData) => {
+      if (markerData != null) {
+        const addTripModal: Modal = this.modalCtrl.create('AddTripPage');
+        addTripModal.present();
+        addTripModal.onWillDismiss((data) => {
+          //ce dobimo podatke od modalnega okna jih shranimo, posljemo na bazo in izbrisemo iz local storega ter mape
+          if (data != null) {
+            //const report: Porocilo = new Porocilo(this.userID, data.value.title, data.value.date, this.activityConverter.arrayToActivities(markerData));
+            //this.reportREST.savePorocilo(report).subscribe();
+            this.clearMap();
+          }
+        });
+      } else {
+        //ustvarimo alert
+        let alert = this.alertCtrl.create({
+          title: 'No activities',
+          subTitle: 'You have no activities on your map! Please add some and then send a trip.',
+          buttons: ['OK']
+        });
+        alert.present();
+      }
+    });
+  }
+
+  //odpremo modalno okno, ki nam prikaze vsa nasa porocila
+  openGetTripModal() {
+    const getTripModal: Modal = this.modalCtrl.create('GetTripPage');
+    getTripModal.present();
+    getTripModal.onWillDismiss((data) => {
+      //ce izberemo porocilo ga prikazemo na mapi
+      if (data != null) {
+        //const report: any = data;
+        //const markerData = this.activityConverter.activitiesToArray(report);
+        this.clearMap();
+        //this.generateMarkers(markerData);
       }
     });
   }
@@ -189,49 +228,49 @@ export class MapPage {
     });
   }
 
+  hometab() {
+    this.navCtrl.setRoot(HomePage);
+  }
 
-  hometab(){
-		this.navCtrl.push(HomePage);
-    }
-    viewActivitytab(){
-      this.navCtrl.push(ViewActivityPage);
-    }
+  viewActivitytab() {
+    this.navCtrl.setRoot(ViewActivityPage);
+  }
 
-    settingstab(){
-      this.navCtrl.push(I18nDemoPage);
-    }
+  settingstab() {
+    this.navCtrl.setRoot(I18nDemoPage);
+  }
 
-    viewGallery(){
-      this.navCtrl.push(GalleryPage);
-    } 
-    /*
-    showMapAndMarker(){
-      let mapOptions: GoogleMapOptions = {
-        mapTypeId: GoogleMapsMapTypeId.ROADMAP,
-        camera: {
-          target: {
-            lat: this.navParams.get('Latitude'),
-            lng: this.navParams.get('Longitude')
-          },
-          zoom: 16,
-          tilt: 30
-        }
-      };
-      
-      this.map = GoogleMaps.create('map', mapOptions);
-      this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
+  viewGallery() {
+    this.navCtrl.setRoot(GalleryPage);
+  }
+  /*
+  showMapAndMarker(){
+    let mapOptions: GoogleMapOptions = {
+      mapTypeId: GoogleMapsMapTypeId.ROADMAP,
+      camera: {
+        target: {
+          lat: this.navParams.get('Latitude'),
+          lng: this.navParams.get('Longitude')
+        },
+        zoom: 16,
+        tilt: 30
+      }
+    };
+    
+    this.map = GoogleMaps.create('map', mapOptions);
+    this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
 
-      console.log(this.map);
-      
+    console.log(this.map);
+    
 
-      let options: MarkerOptions = {
-        title: this.navParams.get('NazivKordinat'),
-        position: { lat: this.navParams.get('Latitude'), lng: this.navParams.get('Longitude') },
-        animation: GoogleMapsAnimation.DROP
-      };
-      console.log("DelaDosemTudi");
-      this.map.addMarker(options);
-    }
-    */
+    let options: MarkerOptions = {
+      title: this.navParams.get('NazivKordinat'),
+      position: { lat: this.navParams.get('Latitude'), lng: this.navParams.get('Longitude') },
+      animation: GoogleMapsAnimation.DROP
+    };
+    console.log("DelaDosemTudi");
+    this.map.addMarker(options);
+  }
+  */
 
 }

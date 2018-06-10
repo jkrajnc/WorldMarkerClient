@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>View trip</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (ngSubmit)="pickTrip()">
+    <ion-item>
+      <ion-label>Trips</ion-label>
+      <ion-select [(ngModel)]="chosenTrip" name="tripPicker" placeholder="Pick trip">
+        <ion-option *ngFor="let trip of tripList" [value]="trip.activities">{{trip.title}}</ion-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <button ion-button type="submit">View</button>
+      <button ion-button type="reset" (click)="closeModal()">Cancel</button>
+    </ion-item>
+  </form>
+</ion-content>
