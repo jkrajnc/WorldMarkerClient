@@ -72,7 +72,7 @@ export class MapPage {
       this.map = GoogleMaps.create('map', mapOptions);
       this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
     } else {
-      //this.showMapAndMarker()
+      this.showMapAndMarker()
     }
   }
 
@@ -243,7 +243,7 @@ export class MapPage {
   viewGallery() {
     this.navCtrl.setRoot(GalleryPage);
   }
-  /*
+  
   showMapAndMarker(){
     let mapOptions: GoogleMapOptions = {
       mapTypeId: GoogleMapsMapTypeId.ROADMAP,
@@ -271,6 +271,6 @@ export class MapPage {
     console.log("DelaDosemTudi");
     this.map.addMarker(options);
   }
-  */
+  
 
 }

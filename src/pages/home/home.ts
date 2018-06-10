@@ -27,23 +27,28 @@ export class HomePage {
 
   /*
   Klicanje get metode in pridobivanje podatkov iz promisa
-  const data = this.webservices.getSlika();
+  const data = this.webservices.getPotovanja(1);
     data.then(podatki => {
-      console.log("podatki");
-      console.log(podatki);      
+      //console.log("podatki");
+      //console.log(podatki);      
     });
 
     // Klicanje post metode
-    const NazviSlike = "Rrimer"
-    const ImgData = "Primer2"
-    this.webservices.postSlika(NazivSlike, ImgData);
+    const naziv = "Rrimer"
+    const opis = "Primer2"
+    const datum = "2018-06-10"
+    var text = '[ { "nazivAktivnosti": "Aktivnost13", "opisAktivnosti": "OpisAktivnosti", "tipAktivnosti": "TipAktivnosti", "datumAktivnosti": "2018-06-10", "latitude": "421412", "longitude": "24142121", "nazivSlike": "Slika1", "ImgData": "dasdasdsad" }, { "nazivAktivnosti": "Aktivnost13", "opisAktivnosti": "OpisAktivnosti", "tipAktivnosti": "TipAktivnosti", "datumAktivnosti": "2018-06-10", "latitude": "421412", "longitude": "24142121", "nazivSlike": "Slika1", "ImgData": "dasdasdsad" } ]';
+      
+    //console.log(myJSON)
+    var obj1 = JSON.parse(text);
+    this.webservices.postPotovanja(naziv, opis, datum, obj1);
   */
 
 
 
   
   maptab(){
-		this.navCtrl.push(MapPage);
+    this.navCtrl.push(MapPage);
   }
   
   settingstab(){
