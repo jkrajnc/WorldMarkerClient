@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, ModalController, Modal, AlertController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, MarkerOptions, Marker, LatLng, GoogleMapsAnimation, GoogleMapsMapTypeId } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapOptions, MarkerOptions, Marker, LatLng, GoogleMapsAnimation, GoogleMapsMapTypeId, Polyline } from '@ionic-native/google-maps';
 import { Storage } from '@ionic/storage';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -19,6 +19,7 @@ import { GalleryPage } from '../gallery/gallery';
 export class MapPage {
 
   map: GoogleMap;
+  polyline: Polyline;
   index: number;
 
   constructor(private navCtrl: NavController, private platform: Platform, private modalCtrl: ModalController,
@@ -29,6 +30,9 @@ export class MapPage {
       this.storage.get('markerData').then((markerData) => {
         if (markerData != null) {
           this.generateMarkers(markerData);
+          //odstranimo in ponovno ustvarimo crto
+          this.polyline.remove();
+          this.generateLines(markerData);
         }
       });
     });
@@ -131,6 +135,8 @@ export class MapPage {
           } else {
             markerData.push(data.value);
             this.storage.set('markerData', markerData);
+            this.polyline.remove();
+          this.generateLines(markerData)
           }
         });
       }
@@ -149,6 +155,9 @@ export class MapPage {
           this.compareArrays(markerData, data1);
           markerData.splice(this.index, 1);
           this.storage.set('markerData', markerData);
+          //odstranimo in ponovno ustvarimo crto
+          this.polyline.remove();
+          this.generateLines(markerData)
         });
       } else if (data2 != null) {
         this.storage.get('markerData').then((markerData) => {
@@ -157,6 +166,9 @@ export class MapPage {
           this.storage.set('markerData', markerData);
           binder[1].remove();
           this.generateMarkers([data2[1]]);
+          //odstranimo in ponovno ustvarimo crto
+          this.polyline.remove();
+          this.generateLines(markerData)
         });
       }
     });
@@ -200,6 +212,9 @@ export class MapPage {
         //const markerData = this.activityConverter.activitiesToArray(report);
         this.clearMap();
         //this.generateMarkers(markerData);
+        //odstranimo in ponovno ustvarimo crto
+        //this.polyline.remove();
+        //this.generateLines(markerData)
       }
     });
   }
@@ -211,10 +226,34 @@ export class MapPage {
     });
   }
 
+  generateLines(markerData: any) {
+    const points = [];
+    markerData.forEach(element => {
+      if (element.type == "travel") {
+        points.push(
+          { lat: element.latitude, lng: element.longitude }
+        )
+      }
+    });
+
+    if (points.length > 1) {
+      let options = {
+        points: points,
+        color: '#AA00FF',
+        width: 3,
+        geodesic: true
+      };
+      this.map.addPolyline(options).then((polyline: Polyline) => {
+        this.polyline=polyline;
+      });
+    }
+  }
+
   //pocistimo mapo in local storage
   clearMap() {
     this.storage.remove("markerData");
     this.map.clear();
+    this.polyline.remove();
   }
 
   compareArrays(arrArr: any, arrElement: any) {
