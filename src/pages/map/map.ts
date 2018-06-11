@@ -154,8 +154,7 @@ export class MapPage {
           markerData.splice(this.index, 1);
           this.storage.set('markerData', markerData);
           //odstranimo in ponovno ustvarimo crto
-          this.polyline.remove();
-          this.generateLines(markerData)
+          this.regeneratePolyline(markerData);
         });
       } else if (data2 != null) {
         this.storage.get('markerData').then((markerData) => {
@@ -165,8 +164,7 @@ export class MapPage {
           binder[1].remove();
           this.generateMarkers([data2[1]], 'red');
           //odstranimo in ponovno ustvarimo crto
-          this.polyline.remove();
-          this.generateLines(markerData)
+          this.regeneratePolyline(markerData);
         });
       }
     });
