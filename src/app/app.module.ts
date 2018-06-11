@@ -6,6 +6,10 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/map/map';
 import { GalleryPage } from '../pages/gallery/gallery';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+
+
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -28,6 +32,7 @@ import { WebservicesProvider } from '../providers/webservices/webservices';
 
 
 
+
 export function createTranslateLoader(http: Http) {
 	return new TranslateStaticLoader(http, 'assets/i18n', '.json');
 }
@@ -37,7 +42,9 @@ export function createTranslateLoader(http: Http) {
     MyApp,
     HomePage,
     MapPage,
-    GalleryPage
+    GalleryPage,
+    RegisterPage,
+    LoginPage
   ],
   imports: [
     HttpModule,
@@ -57,7 +64,9 @@ export function createTranslateLoader(http: Http) {
     MyApp,
     HomePage,
     MapPage,
-    GalleryPage
+    GalleryPage,
+    RegisterPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

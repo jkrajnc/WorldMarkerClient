@@ -160,7 +160,8 @@ export class MapPage {
         addTripModal.onWillDismiss((data) => {
           //ce dobimo podatke od modalnega okna jih shranimo, posljemo na bazo in izbrisemo iz local storega ter mape
           if (data != null) {
-            this.REST.postPotovanja(data.value.title, data.value.description, data.value.date, markerData);
+            console.log(data.value.title, data.value.description, data.value.date, markerData)
+            this.REST.postPotovanja(data.value.title, data.value.description, data.value, markerData);
             this.clearMap();
           }
         });
