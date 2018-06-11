@@ -3,6 +3,8 @@ import { IonicPage, ViewController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 
+import { WebservicesProvider } from '../../providers/webservices/webservices';
+
 @IonicPage()
 @Component({
   selector: 'page-getTrip',
@@ -10,15 +12,13 @@ import { Storage } from '@ionic/storage';
 })
 export class GetTripPage {
 
-  //idMember: number;
-  //reportREST: RestPorociloProvider = new RestPorociloProvider(this.http);
   tripList: any[];
   chosenTrip: any;
 
-  constructor(public viewCtrl: ViewController, public navParams: NavParams, private http: HttpClient, private storage: Storage) {
-    /*storage.get("session").then((value => {
-      this.reportREST.getPorocilaByIdClan(value.id).subscribe(porocila => this.reportList = porocila);
-   }));*/
+  constructor(public viewCtrl: ViewController, public navParams: NavParams, private http: HttpClient, private storage: Storage, private REST: WebservicesProvider) {
+    this.REST.getPotovanja(1).then(data => {
+      this.tripList = data;
+    });
   }
 
   //posljemo prazne podatke
@@ -27,7 +27,7 @@ export class GetTripPage {
   }
 
   //posljemo prazne podatke
-  pickReport() {
+  pickTrip() {
     this.viewCtrl.dismiss(this.chosenTrip);
   }
 
