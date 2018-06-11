@@ -1,29 +1,31 @@
-<ion-header>
+<!--><ion-header>
 
   <ion-navbar>
     <ion-title>Save trip</ion-title>
   </ion-navbar>
 
 </ion-header>
+-->
 
-
-<ion-content padding>
+<ion-content padding id="id_act_pg">
+    <ion-label style="text-align: center; font-weight: 500; font-size: 1.5em">ADD TRIP</ion-label>
+  
     <form [formGroup]="tripData" (ngSubmit)="sendTrip()">
-      <ion-item>
+      <ion-item class="m_pos_b">
         <ion-label>Title</ion-label>
         <ion-input type="text" formControlName="title"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item class="m_pos_b"> 
         <ion-label>Description</ion-label>
         <ion-textarea formControlName="description"></ion-textarea>
       </ion-item>
-      <ion-item>
+      <ion-item class="m_pos_b">
         <ion-label>Date</ion-label>
         <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date" [(ngModel)]="defaultDate"></ion-datetime>
       </ion-item>
-      <ion-item>
-        <button ion-button type="submit" [disabled]="!tripData.valid">Add</button>
-        <button ion-button type="reset" (click)="closeModal()">Cancel</button>
+      <ion-item class="m_pos_b">
+        <button style="height: 40px;width: 80px;"  ion-button type="submit" [disabled]="!tripData.valid">Add</button>
+        <button style="height: 40px;width: 80px;"  ion-button type="reset" (click)="closeModal()">Cancel</button>
       </ion-item>
     </form>
   </ion-content>

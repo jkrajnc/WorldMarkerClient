@@ -1,4 +1,4 @@
-<ion-header>
+<!-->ion-header>
 
   <ion-navbar>
     <ion-title end>View Activity</ion-title>
@@ -11,35 +11,43 @@
   </ion-navbar>
 
 </ion-header>
+-->
 
-
-<ion-content padding>
+<ion-content padding id="id_act_pg">
+    <ion-label style="text-align: center; font-weight: 500; font-size: 1.5em">VIEW ACTIVITY</ion-label>
+ 
   <form [formGroup]="activityData">
-    <ion-item>
+    <ion-item class="m_pos_b">
       <ion-label>Title</ion-label>
       <ion-input type="text" formControlName="title"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item class="m_pos_b">
       <ion-label>Description</ion-label>
       <ion-textarea formControlName="description"></ion-textarea>
     </ion-item>
-    <ion-item>
+    <ion-item class="m_pos_b">
       <ion-label>Type</ion-label>
       <ion-select formControlName="type" [(ngModel)]="varType">
         <ion-option value="memory">Memory</ion-option>
         <ion-option value="travel">Travel marker</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
+    <ion-item class="m_pos_b">
       <ion-label>Date</ion-label>
       <ion-datetime displayFormat="DD/MM/YYYY" formControlName="date"></ion-datetime>
     </ion-item>
-    <ion-item>
+    <ion-item class="m_pos_b">
       <img [src]="base64Image" *ngIf="base64Image" alt="Image"/>
     </ion-item>
-    <ion-item>
-      <button ion-button type="button" (click)="closeModal()">OK</button>
-      <button ion-button type="button" (click)="deleteActivity()">Delete</button>
+    <ion-item class="m_pos_b">
+      <button  style="height: 40px;width: 80px;" ion-button type="button" (click)="closeModal()">OK</button>
+      <button  style="height: 40px;width: 80px;" ion-button type="button" (click)="deleteActivity()">Delete</button>
+    </ion-item>
+    <ion-item class="m_pos_b">
+        <button ion-button type="button" (click)="openEditActivityModal()">
+            <p>Edit</p>
+            <ion-icon name="clipboard"></ion-icon>
+          </button>
     </ion-item>
   </form>
 </ion-content>

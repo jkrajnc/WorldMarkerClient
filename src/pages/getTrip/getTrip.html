@@ -1,23 +1,25 @@
-<ion-header>
+<!--<ion-header>
 
   <ion-navbar>
     <ion-title>View trip</ion-title>
   </ion-navbar>
 
 </ion-header>
+-->
 
-
-<ion-content padding>
+<ion-content padding id="id_act_pg">
+    <ion-label style="text-align: center; font-weight: 500; font-size: 1.5em">GET TRIP</ion-label>
+ 
   <form (ngSubmit)="pickTrip()">
-    <ion-item>
+    <ion-item class="m_pos_b">
       <ion-label>Trips</ion-label>
       <ion-select [(ngModel)]="chosenTrip" name="tripPicker" placeholder="Pick trip">
         <ion-option *ngFor="let trip of tripList" [value]="trip.activities">{{trip.title}}</ion-option>
       </ion-select>
     </ion-item>
-    <ion-item>
-      <button ion-button type="submit">View</button>
-      <button ion-button type="reset" (click)="closeModal()">Cancel</button>
+    <ion-item class="m_pos_b">
+      <button style="height: 40px;width: 80px;"  ion-button type="submit">View</button>
+      <button style="height: 40px;width: 80px;"  ion-button type="reset" (click)="closeModal()">Cancel</button>
     </ion-item>
   </form>
 </ion-content>
