@@ -52,21 +52,17 @@
 
   <div #map id="map"></div>
   <div>
-    <!---<button id="addMarker" ion-button icon-end (click) ="addMarkerButton()">
-      <p>Add</p>
-      <ion-icon name="pin"></ion-icon>
-    </button>-->
     <ion-row>
+      <ion-col align="center">
+        <button id="addMarker" ion-button icon-end (click)="addMarkerButton()">
+          <p>Add</p>
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </ion-col>
       <ion-col align="center">
         <button id="clearMap" ion-button icon-end (click)="clearMap()">
           <p>Clear</p>
           <ion-icon name="trash"></ion-icon>
-        </button>
-      </ion-col>
-      <ion-col align="center">
-        <button id="syncid" ion-button icon-end (click)="openAddReportModal()">
-          <p>Sync</p>
-          <ion-icon name="sync"></ion-icon>
         </button>
       </ion-col>
     </ion-row>
