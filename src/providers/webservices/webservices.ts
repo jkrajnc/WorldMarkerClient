@@ -10,6 +10,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 @Injectable()
 export class WebservicesProvider {
 
+  //povezava: string = "http://localhost:3000";
   povezava: string = "https://murmuring-mountain-34739.herokuapp.com";
 
   constructor(public http: Http) {
@@ -105,7 +106,7 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
       opisPotovanja: OpisPotovanja,
       datumPotovanja: DatumPotovanja,
     }
-    //console.log(rows)
+    console.log(postParams)
     this.http.post(`${this.povezava}/potovanje`, postParams, options)
       .subscribe(data => {
         console.log(data["_body"]);
@@ -222,13 +223,16 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
   };
   */
 
-  async getUporabnik() {
 
-    const url = `${this.povezava}/uporabnik`;
+
+  async getUporabnik(username, password) {
+
+    const url = `${this.povezava}/uporabniki?username=${username}&password=${password}`;
     const response = await fetch(url);
     const data = await response.json();
-    if (data.message == "Ni potovanj") {
-      //this.showAlert();
+    console.log(data);
+    if (data.message == "Ne obstaja") {
+      return data;
     } else {
       return data;
     }
@@ -249,7 +253,7 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
 
     //var rows = JSON.parse(JSON.stringify(postParams));
     //console.log(rows)
-    this.http.post(`${this.povezava}/slikazkordinatom`, postParams, options)
+    this.http.post(`${this.povezava}/uporabniki`, postParams, options)
       .subscribe(data => {
         console.log(data['_body']);
       }, error => {

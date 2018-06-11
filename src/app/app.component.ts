@@ -7,6 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { MapPage } from '../pages/map/map';
 import { I18nDemoPage } from '../pages/i18n-demo/i18n-demo.page';
 import { GalleryPage } from '../pages/gallery/gallery';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +17,7 @@ import { GalleryPage } from '../pages/gallery/gallery';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -26,7 +29,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Map', component: MapPage },
       { title: 'i18n', component: I18nDemoPage},
-      { title: 'Gallery', component: GalleryPage}
+      { title: 'Gallery', component: GalleryPage},
+      { title: 'Login', component: LoginPage},
+      { title: 'Register', component: RegisterPage}
     ];
 
   }
