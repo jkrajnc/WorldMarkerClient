@@ -236,13 +236,14 @@ export class MapPage {
   generateMapData() {
     this.storage.get('markerData').then((markerData) => {
       if (markerData != null) {
+        console.log(markerData);
         this.generateMarkers(markerData, 'red');
         //odstranimo in ponovno ustvarimo crto
-        this.regeneratePolyline(markerData);
+        //this.regeneratePolyline(markerData);
       }
       this.REST.getZanimivosti().then((data) => {
         console.log(data);
-        this.generateMarkers(data, 'blue');
+        //this.generateMarkers(data, 'blue');
       });
 
     });
