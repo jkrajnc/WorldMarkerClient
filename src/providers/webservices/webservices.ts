@@ -95,6 +95,7 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
   };
 
   postPotovanja(NazivPotovanja, OpisPotovanja, DatumPotovanja, ArrayAktivnosti) {
+    //console.log(DatumPotovanja.substring());
     var headers = new Headers();
     headers.append("Accept", 'application/json');
     headers.append('Content-Type', 'application/json');
@@ -118,7 +119,7 @@ postKordinate(NazivKordinat, Latitude, Longitude) {
             this.postAktivnost(ArrayAktivnosti[stevec]["title"], ArrayAktivnosti[stevec]["description"],
             ArrayAktivnosti[stevec]["type"], ArrayAktivnosti[stevec]["date"],
             ArrayAktivnosti[stevec]["latitude"], ArrayAktivnosti[stevec]["longitude"],
-            null, ArrayAktivnosti[stevec]["image"], 1);
+            null, ArrayAktivnosti[stevec]["image"], data["_body"]);
         }
 
       }, error => {

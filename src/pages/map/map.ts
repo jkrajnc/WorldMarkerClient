@@ -154,8 +154,7 @@ export class MapPage {
           markerData.splice(this.index, 1);
           this.storage.set('markerData', markerData);
           //odstranimo in ponovno ustvarimo crto
-          this.polyline.remove();
-          this.generateLines(markerData)
+          this.regeneratePolyline(markerData);
         });
       } else if (data2 != null) {
         this.storage.get('markerData').then((markerData) => {
@@ -165,8 +164,7 @@ export class MapPage {
           binder[1].remove();
           this.generateMarkers([data2[1]], 'red');
           //odstranimo in ponovno ustvarimo crto
-          this.polyline.remove();
-          this.generateLines(markerData)
+          this.regeneratePolyline(markerData);
         });
       }
     });
@@ -182,10 +180,8 @@ export class MapPage {
         addTripModal.onWillDismiss((data) => {
           //ce dobimo podatke od modalnega okna jih shranimo, posljemo na bazo in izbrisemo iz local storega ter mape
           if (data != null) {
-            //const report: Porocilo = new Porocilo(this.userID, data.value.title, data.value.date, this.activityConverter.arrayToActivities(markerData));
-            //this.reportREST.savePorocilo(report).subscribe();
             this.REST.postPotovanja(data.value.title, data.value.description, data.value.date, markerData);
-            //this.clearMap();
+            this.clearMap();
           }
         });
       } else {
