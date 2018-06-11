@@ -34,7 +34,7 @@ export class MapPage {
   }
 
   //mapo inicializiramo glede na naso lokacijo, preko geolokacije, ustvarimo tudi click event
-  /*initMap() {
+  initMap() {
     this.geolocation.getCurrentPosition().then((resp) => {
       let mapOptions: GoogleMapOptions = {
         mapTypeId: GoogleMapsMapTypeId.ROADMAP,
@@ -53,26 +53,6 @@ export class MapPage {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-  }*/
-
-  initMap() {
-    if (typeof this.navParams.get('Latitude') === "undefined") {
-      let mapOptions: GoogleMapOptions = {
-        mapTypeId: GoogleMapsMapTypeId.ROADMAP,
-        camera: {
-          target: {
-            lat: 46.5637542,
-            lng: 15.6469096,
-          },
-          zoom: 16,
-          tilt: 30
-        }
-      };
-      this.map = GoogleMaps.create('map', mapOptions);
-      this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
-    } else {
-      this.showMapAndMarker()
-    }
   }
 
   //ob kliku prvo pridobimo koordinate klika, ki jih nato posljemo v modalno okno
@@ -82,14 +62,14 @@ export class MapPage {
   }
 
   //ob kliku na gumb pridobimo nase koordinate, ki jih nato posljemo v modalno okno
-  /*addMarkerButton() {
+  addMarkerButton() {
     this.geolocation.getCurrentPosition().then((resp) => {
       let latLng: LatLng = new LatLng(resp.coords.latitude, resp.coords.longitude);
-      this.openActivityModal(latLng);
+      this.openAddActivityModal(latLng);
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-  }*/
+  }
 
   //ustvarimo marker
   createMarker(data: any, iconColor: any) {
@@ -260,6 +240,7 @@ export class MapPage {
         this.regeneratePolyline(markerData);
       }
       this.REST.getZanimivosti().then((data) => {
+        console.log(data);
         this.generateMarkers(data, 'blue');
       });
 
