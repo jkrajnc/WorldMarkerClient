@@ -62,24 +62,24 @@ async getPotovanja(IdUporabnika) {
     //console.log(url);
     const response = await fetch(url);
     const data = await response.json();
+    var temp = []
     //console.log("Dela");
     if (data.message == "Ni potovanj") {
       //this.showAlert();
     } else {
-      var stevec = 0;
       for (var stevec = 0; stevec < data.length; stevec++){
-        var aktivnosti = this.getAktivnostiOdPotovanja(data[stevec]["IdPotovanje"]);
-        aktivnosti.then(function(result) {
-          //console.log(stevec)
-          data[stevec-1]["Aktivnosti"] = result;      
-        }); 
+        var aktivnosti = this.getAktivnostiOdPotovanja(data[stevec]["IdPotovanje"], data[stevec]);
+        await aktivnosti.then(function(result) {
+          //console.log(stevec) Tu izpiše obakrat 1, 1
+          temp.push(result);
+          //console.log(result)
+        });
       }
-      console.log(data)
-      //console.log(data)
-    }      
+      return temp;
+    };      
 };
 
-async getAktivnostiOdPotovanja(IdPotovanja) {
+async getAktivnostiOdPotovanja(IdPotovanja, podatki) {
 
   const url = `${this.povezava}/aktivnosti/${IdPotovanja}`;
   //console.log(url);
@@ -89,7 +89,8 @@ async getAktivnostiOdPotovanja(IdPotovanja) {
   if (data.message == "Ni potovanj") {
     //this.showAlert();
   } else {
-    return data;
+    podatki["Aktivnosti"] = data
+    return podatki;
   }      
 };
 
