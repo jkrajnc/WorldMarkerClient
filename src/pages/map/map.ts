@@ -10,6 +10,7 @@ import { HomePage } from '../home/home';
 import { ViewActivityPage } from '../viewActivity/viewActivity';
 import { I18nDemoPage } from '../i18n-demo/i18n-demo.page';
 import { GalleryPage } from '../gallery/gallery';
+import { WebservicesProvider } from '../../providers/webservices/webservices';
 
 @Component({
   selector: 'page-map',
@@ -19,22 +20,16 @@ import { GalleryPage } from '../gallery/gallery';
 export class MapPage {
 
   map: GoogleMap;
-  polyline: Polyline;
+  polyline: Polyline = null;
   index: number;
 
   constructor(private navCtrl: NavController, private platform: Platform, private modalCtrl: ModalController,
-    private geolocation: Geolocation, private storage: Storage, public navParams: NavParams, private alertCtrl: AlertController, private http: HttpClient) {
+    private geolocation: Geolocation, private storage: Storage, public navParams: NavParams, private alertCtrl: AlertController,
+    private http: HttpClient, private REST: WebservicesProvider) {
     //ko se vse zazene inicializiramo mapo
     platform.ready().then(() => {
       this.initMap();
-      this.storage.get('markerData').then((markerData) => {
-        if (markerData != null) {
-          this.generateMarkers(markerData);
-          //odstranimo in ponovno ustvarimo crto
-          this.polyline.remove();
-          this.generateLines(markerData);
-        }
-      });
+      this.generateMapData();
     });
   }
 
@@ -97,12 +92,13 @@ export class MapPage {
   }*/
 
   //ustvarimo marker
-  createMarker(data: any) {
+  createMarker(data: any, iconColor: any) {
     //poljubni parametri za nas marker
     let options: MarkerOptions = {
       title: data.title,
       position: { lat: data.latitude, lng: data.longitude },
-      animation: GoogleMapsAnimation.DROP
+      animation: GoogleMapsAnimation.DROP,
+      icon: iconColor
     };
 
     //ustvarimo marker
@@ -125,7 +121,7 @@ export class MapPage {
         data.value.longitude = position.lng;
 
         //ustvarimo marker
-        this.createMarker(data.value);
+        this.createMarker(data.value, 'red');
 
         //shranimo podatke markerja v local storagu
         this.storage.get('markerData').then((markerData) => {
@@ -135,8 +131,10 @@ export class MapPage {
           } else {
             markerData.push(data.value);
             this.storage.set('markerData', markerData);
-            this.polyline.remove();
-          this.generateLines(markerData)
+            if (this.polyline != null) {
+              this.polyline.remove();
+            }
+            this.generateLines(markerData)
           }
         });
       }
@@ -165,7 +163,7 @@ export class MapPage {
           markerData[this.index] = data2[1];
           this.storage.set('markerData', markerData);
           binder[1].remove();
-          this.generateMarkers([data2[1]]);
+          this.generateMarkers([data2[1]], 'red');
           //odstranimo in ponovno ustvarimo crto
           this.polyline.remove();
           this.generateLines(markerData)
@@ -186,7 +184,8 @@ export class MapPage {
           if (data != null) {
             //const report: Porocilo = new Porocilo(this.userID, data.value.title, data.value.date, this.activityConverter.arrayToActivities(markerData));
             //this.reportREST.savePorocilo(report).subscribe();
-            this.clearMap();
+            this.REST.postPotovanja(data.value.title, data.value.description, data.value.date, markerData);
+            //this.clearMap();
           }
         });
       } else {
@@ -208,21 +207,18 @@ export class MapPage {
     getTripModal.onWillDismiss((data) => {
       //ce izberemo porocilo ga prikazemo na mapi
       if (data != null) {
-        //const report: any = data;
-        //const markerData = this.activityConverter.activitiesToArray(report);
         this.clearMap();
-        //this.generateMarkers(markerData);
+        this.generateMarkers(data, 'red');
         //odstranimo in ponovno ustvarimo crto
-        //this.polyline.remove();
-        //this.generateLines(markerData)
+        this.regeneratePolyline(data);
       }
     });
   }
 
   //generiramo markerje glede na array
-  generateMarkers(markerData) {
+  generateMarkers(markerData, iconColor) {
     markerData.forEach(element => {
-      this.createMarker(element);
+      this.createMarker(element, iconColor);
     });
   }
 
@@ -243,17 +239,42 @@ export class MapPage {
         width: 3,
         geodesic: true
       };
+
       this.map.addPolyline(options).then((polyline: Polyline) => {
-        this.polyline=polyline;
+        this.polyline = polyline;
       });
     }
+
   }
 
   //pocistimo mapo in local storage
   clearMap() {
     this.storage.remove("markerData");
     this.map.clear();
-    this.polyline.remove();
+    if (this.polyline != null) {
+      this.polyline.remove();
+    }
+  }
+
+  generateMapData() {
+    this.storage.get('markerData').then((markerData) => {
+      if (markerData != null) {
+        this.generateMarkers(markerData, 'red');
+        //odstranimo in ponovno ustvarimo crto
+        this.regeneratePolyline(markerData);
+      }
+      this.REST.getZanimivosti().then((data) => {
+        this.generateMarkers(data, 'blue');
+      });
+
+    });
+  }
+
+  regeneratePolyline(data) {
+    if (this.polyline != null) {
+      this.polyline.remove();
+    }
+    this.generateLines(data);
   }
 
   compareArrays(arrArr: any, arrElement: any) {
@@ -282,8 +303,8 @@ export class MapPage {
   viewGallery() {
     this.navCtrl.setRoot(GalleryPage);
   }
-  
-  showMapAndMarker(){
+
+  showMapAndMarker() {
     let mapOptions: GoogleMapOptions = {
       mapTypeId: GoogleMapsMapTypeId.ROADMAP,
       camera: {
@@ -295,12 +316,12 @@ export class MapPage {
         tilt: 30
       }
     };
-    
+
     this.map = GoogleMaps.create('map', mapOptions);
     this.map.on(GoogleMapsEvent.MAP_CLICK).subscribe(this.onMapClick.bind(this));
 
     console.log(this.map);
-    
+
 
     let options: MarkerOptions = {
       title: this.navParams.get('NazivKordinat'),
@@ -310,6 +331,6 @@ export class MapPage {
     console.log("DelaDosemTudi");
     this.map.addMarker(options);
   }
-  
+
 
 }
